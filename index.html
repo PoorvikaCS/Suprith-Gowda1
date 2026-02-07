@@ -697,6 +697,90 @@ section::after{
     text-align: left;           /* keeps readability */
   }
 }
+/* ===== MOBILE: PROFILE IMAGE TOP-LEFT (INDEX PAGE) ===== */
+@media (max-width: 768px){
+
+  .hero{
+    position: relative;
+    text-align: left;       /* prevent centering */
+  }
+
+  .hero img{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    margin: 0;              /* remove auto-centering */
+  }
+
+  .hero-content{
+    margin-top: 140px;      /* push text below image */
+    text-align: left;
+  }
+}
+/* ===== MOBILE: SMALL PROFILE IMAGE TOP-LEFT (NO OVERLAP) ===== */
+@media (max-width: 768px){
+
+  .hero{
+    position: relative;
+    text-align: left;
+  }
+
+  /* Profile image like Congress logo size */
+  .hero img{
+    position: absolute;
+    top: 34px;
+    left: 14px;
+    width: 48px;          /* similar to brand-logo */
+    height: 48px;
+    border-width: 3px;    /* thinner border */
+    margin: 0;
+  }
+
+  /* Keep text as-is, just push it down safely */
+  .hero-content{
+    margin-top: 70px;     /* enough space → NO overlap */
+    text-align: left;
+  }
+}
+/* ===== COLORED ICONS PER SECTION ===== */
+
+/* Vision – Blue */
+#vision .card-icon{
+  color:#1e88e5;
+}
+
+/* Mission – Green */
+#mission .card-icon{
+  color:#2e7d32;
+}
+
+/* Values – Gold */
+#values .card-icon{
+  color:#f9a825;
+}
+
+/* Optional: Journey list icons (if added later) */
+#journey .card-icon{
+  color:#6a1b9a;
+}
+/* ===== ICON ANIMATIONS ===== */
+
+/* Base smoothness */
+.card-icon{
+  transition: transform .35s ease, color .35s ease;
+}
+
+/* Hover animation (desktop) */
+@media (hover:hover){
+  .card:hover .card-icon{
+    transform: scale(1.25) rotate(-6deg);
+  }
+}
+
+/* Tap animation (mobile) */
+.card:active .card-icon{
+  transform: scale(1.15);
+}
 
 </style>
 </head>
@@ -777,10 +861,10 @@ section::after{
   <div class="gallery-grid" id="galleryGrid"></div>
 
   <div class="gallery-pagination">
-    <button onclick="changePage(1)">1</button>
+    <!-- <button onclick="changePage(1)">1</button>
     <button onclick="changePage(2)">2</button>
     <button onclick="changePage(3)">3</button>
-    <button onclick="nextPage()">→</button>
+    <button onclick="nextPage()">→</button> -->
   </div>
 </section>
 
@@ -911,6 +995,41 @@ const data = {
     footer: "© Suprith Gowda"
   }
 };
+/* ===== CARD ICON MAPPING (TEXT → ICON) ===== */
+const iconMap = {
+
+  /* ===== VALUES ===== */
+  "ದೇಶಭಕ್ತಿ": "fas fa-flag",
+  "ರೈತ ಹಿತದ ಬದ್ಧತೆ": "fas fa-tractor",
+  "ಯುವ ಪ್ರೇರಣೆ": "fas fa-users",
+  "ಜನರೊಂದಿಗೆ ನಂಟು": "fas fa-handshake",
+  "ನಿಷ್ಠಾವಂತ ನಾಯಕತ್ವ": "fas fa-user-shield",
+  "ತ್ಯಾಗಮಯ ಸೇವೆ": "fas fa-hands-helping",
+
+  /* ===== MISSION ===== */
+  "ಯುವ ನಾಯಕತ್ವ": "fas fa-user-graduate",
+  "ಸಾಮಾಜಿಕ ನ್ಯಾಯ": "fas fa-balance-scale",
+  "ಗ್ರಾಮೀಣ ಅಭಿವೃದ್ಧಿ": "fas fa-home",
+  "ರೈತ ಕಲ್ಯಾಣ": "fas fa-seedling",
+  "ಪಾರದರ್ಶಕ ಆಡಳಿತ": "fas fa-landmark",
+  "ಜನಸೇವಾ ರಾಜಕೀಯ": "fas fa-bullhorn",
+
+  /* ===== VISION ===== */
+  "ಜನಕೇಂದ್ರಿತ ಮತ್ತು ಮೌಲ್ಯಾಧಾರಿತ ರಾಜಕೀಯ": "fas fa-users-cog",
+  "ರೈತರ ಆರ್ಥಿಕ ಭದ್ರತೆ ಮತ್ತು ಕೃಷಿ ಅಭಿವೃದ್ಧಿ": "fas fa-hand-holding-usd",
+  "ಯುವಕರಿಗೆ ಶಿಕ್ಷಣ, ಉದ್ಯೋಗ ಮತ್ತು ನಾಯಕತ್ವ ಅವಕಾಶಗಳು": "fas fa-graduation-cap",
+  "ಭ್ರಷ್ಟಾಚಾರ ರಹಿತ ಹಾಗೂ ಪಾರದರ್ಶಕ ಆಡಳಿತ": "fas fa-eye",
+  "ಗ್ರಾಮೀಣ ಮೂಲಸೌಕರ್ಯ ಮತ್ತು ಸಮಗ್ರ ಅಭಿವೃದ್ಧಿ": "fas fa-road",
+  "ಸಾಮಾಜಿಕ ನ್ಯಾಯ ಮತ್ತು ಸಮಾನ ಅವಕಾಶಗಳ ಸಮಾಜ": "fas fa-scale-balanced",
+
+  /* ===== ENGLISH (SAFE FALLBACK) ===== */
+  "Patriotism": "fas fa-flag",
+  "Farmer welfare": "fas fa-seedling",
+  "Youth leadership": "fas fa-user-graduate",
+  "Social justice": "fas fa-balance-scale",
+  "Transparent governance": "fas fa-eye",
+  "People-centric politics": "fas fa-users"
+};
 
 function render() {
   const d = kan ? data.kan : data.en;
@@ -927,13 +1046,31 @@ function render() {
   aboutTitle.innerText = d.aboutTitle;
   aboutText.innerText = d.aboutText;
   visionTitle.innerText = d.visionTitle;
-  visionBox.innerHTML = d.vision.map(v => `<div class="card">${v}</div>`).join("");
+visionBox.innerHTML = d.vision.map(v =>
+  `<div class="card">
+     <i class="card-icon ${iconMap[v] || 'fas fa-circle'}"></i>
+     <span>${v}</span>
+   </div>`
+).join("");
+
   missionTitle.innerText = d.missionTitle;
-  missionBox.innerHTML = d.mission.map(m => `<div class="card">${m}</div>`).join("");
+missionBox.innerHTML = d.mission.map(m =>
+  `<div class="card">
+     <i class="card-icon ${iconMap[m] || 'fas fa-circle'}"></i>
+     <span>${m}</span>
+   </div>`
+).join("");
+
   journeyTitle.innerText = d.journeyTitle;
   journeyBox.innerHTML = d.journey.map(j => `<li>${j}</li>`).join("");
   valuesTitle.innerText = d.valuesTitle;
-  valuesBox.innerHTML = d.values.map(v => `<div class="card">${v}</div>`).join("");
+valuesBox.innerHTML = d.values.map(v =>
+  `<div class="card">
+     <i class="card-icon ${iconMap[v] || 'fas fa-circle'}"></i>
+     <span>${v}</span>
+   </div>`
+).join("");
+
   galleryTitle.innerText = d.galleryTitle;
   quoteText.innerText = d.quote;
   footerText.innerText = d.footer;
@@ -959,7 +1096,7 @@ window.addEventListener("load", revealOnScroll);
 </script>
 <script>
 const galleryImages = {
-  services: ["s1.jpeg","s2.jpeg","s3.jpeg","s4.jpeg","s5.jpeg","s6.jpeg","s7.jpeg","s8.jpeg","s9.jpeg","s10.jpeg","s11.jpeg","s12.jpeg","s13.jpeg","s14.jpeg","s15.jpeg","s16.jpeg","s17.jpeg","s18.jpeg","s19.jpeg","s20.jpeg","s21.jpeg","s22.jpeg","s23.jpeg","s24.jpeg"],
+  services: ["s1.jpeg","s2.jpeg","s3.jpeg","s4.jpeg","s5.jpeg","s6.jpeg","s7.jpeg","s8.jpeg","s9.jpeg","s10.jpeg","s11.jpeg","s12.jpeg","s13.jpeg","s14.jpeg","s15.jpeg","s16.jpeg","s17.jpeg","s18.jpeg","s19.jpeg","s20.jpeg","s21.jpeg","s22.jpeg","s23.jpeg","s24.jpeg","s27.jpeg","s26.jpeg","s28.jpeg","s29.jpeg"],
   resilience: ["r1.jpeg","r2.jpeg","r3.jpeg","r4.jpeg","r5.jpeg","r6.jpeg","r7.jpeg","r8.jpeg","r9.jpeg","r10.jpeg","r11.jpeg","r12.jpeg","r13.jpeg","r14.jpeg","r15.jpeg","r16.jpeg","r17.jpeg","r18.jpeg","r19.jpeg","r20.jpeg","r21.jpeg","r22.jpeg","r23.jpeg"],
   others: ["g1.jpeg","g2.jpeg","g3.jpeg","g4.jpeg","g5.jpeg","g6.jpeg","g7.jpeg","g8.jpeg","g9.jpeg","g10.jpeg","g11.jpeg","g12.jpeg","g13.jpeg","g14.jpeg","g15.jpeg","g16.jpeg","g17.jpeg","g18.jpeg","g19.jpeg","g20.jpeg","g21.jpeg","g22.jpeg","g23.jpeg"]
 };
@@ -1012,3 +1149,4 @@ renderGallery(1);
 
 </body>
 </html>
+
