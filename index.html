@@ -492,9 +492,6 @@ footer{
   color:var(--primary);       /* matches site theme */
   opacity:1;
 }
-
-
-
 /* ===== MOBILE HEADER FIX ===== */
 @media (max-width: 768px) {
 
@@ -523,7 +520,6 @@ footer{
   .nav a{
     font-size:13px;
   }
-
   .lang-btn{
     font-size:12px;
     padding:5px 14px;
@@ -534,6 +530,8 @@ footer{
   display:flex;
   align-items:center;
   gap:10px;
+  font-weight: 700;
+  
 }
 
 .brand-logo{
@@ -820,18 +818,12 @@ section::after{
 .card:active .card-icon{
   transform: scale(1.15);
 }
-/* ===== KANNADA FONT OVERRIDE (NUDI-STYLE LOOK) ===== */
-:lang(kn),
-#name,#tagline,#heroText,
-#aboutTitle,#aboutText,
-#visionTitle,#missionTitle,
-#journeyTitle,#valuesTitle,
-#galleryTitle,#quoteText,#footerText,
-.card span,#journeyBox li{
-  font-family:'Tiro Kannada','Noto Serif Kannada',serif !important;
+/* ===== ONE FONT FOR ENTIRE WEBSITE (HTML + SCRIPT CONTENT) ===== */
+* {
+  font-family:'Noto Serif Kannada', serif;
 }
 
-/* ===== FIX: RESTORE FONT AWESOME ICONS ===== */
+/* ===== KEEP FONT AWESOME ICONS SAFE ===== */
 i,
 .fa,
 .fas,
@@ -940,8 +932,6 @@ i,
   <!-- PAGINATION -->
   <div id="galleryPagination" class="gallery-pagination"></div>
 </section>
-</section>
-
 <div class="quote reveal" id="quoteText"></div> 
   <footer>
   <div class="footer-social">
@@ -1028,7 +1018,7 @@ const data = {
       gallery: "Gallery"
     },
     name: "Suprith Gowda",
-    tagline: "Leader born from struggle • Strength grown from people",
+    tagline: "Leader born from struggle  Strength grown from people",
     heroText: "A young leader shaped by courage, patriotism and service.",
     aboutTitle: "Introduction",
     aboutText: "Born in the soil of Kanchamaranahalli and shaped by a culture of sacrifice and discipline, Suprith Gowda is a young leader whose character is rooted in courage, hard work, and patriotism. As the son of CISF officer K. M. Venkatesh, who served the Indian Armed Forces for 28 years and attained martyrdom in the line of duty, national service is not a lesson for him—it flows in his blood. Through perseverance and struggle, he has built his own identity and has chosen public service and sacrifice as his way of life, working tirelessly for the welfare of the people.",
@@ -1103,7 +1093,28 @@ const iconMap = {
   "Youth leadership": "fas fa-user-graduate",
   "Social justice": "fas fa-balance-scale",
   "Transparent governance": "fas fa-eye",
-  "People-centric politics": "fas fa-users"
+  "People-centric politics": "fas fa-users",
+
+  "People-centric and value-driven politics": "fas fa-users-cog",
+  "Economic security for farmers": "fas fa-hand-holding-usd",
+  "Youth education and leadership": "fas fa-graduation-cap",
+  "Transparent governance": "fas fa-eye",
+  "Inclusive development": "fas fa-road",
+  "Equal opportunities": "fas fa-scale-balanced",
+  
+  "Youth leadership": "fas fa-user-graduate",
+  "Social justice": "fas fa-balance-scale",
+  "Rural development": "fas fa-home",
+  "Farmer welfare": "fas fa-seedling",
+  "Transparent governance": "fas fa-landmark",
+  "People-centric politics": "fas fa-bullhorn",
+
+  "Patriotism": "fas fa-user-graduate",
+  "Commitment to farmers": "fas fa-balance-scale",
+  "Youth inspiration": "fas fa-home",
+  "People connect": "fas fa-seedling",
+  "Integrity": "fas fa-landmark",
+  "Service": "fas fa-bullhorn"
 };
 
 function render() {
@@ -1123,7 +1134,7 @@ function render() {
   visionTitle.innerText = d.visionTitle;
 visionBox.innerHTML = d.vision.map(v =>
   `<div class="card">
-     <i class="card-icon ${iconMap[v] || 'fas fa-circle'}"></i>
+     <i class="card-icon ${iconMap[v] || 'fas fa-dot-circle'}"></i>
      <span>${v}</span>
    </div>`
 ).join("");
@@ -1131,7 +1142,7 @@ visionBox.innerHTML = d.vision.map(v =>
   missionTitle.innerText = d.missionTitle;
 missionBox.innerHTML = d.mission.map(m =>
   `<div class="card">
-     <i class="card-icon ${iconMap[m] || 'fas fa-circle'}"></i>
+     <i class="card-icon ${iconMap[m] || 'fas fa-dot-circle'}"></i>
      <span>${m}</span>
    </div>`
 ).join("");
@@ -1141,7 +1152,7 @@ missionBox.innerHTML = d.mission.map(m =>
   valuesTitle.innerText = d.valuesTitle;
 valuesBox.innerHTML = d.values.map(v =>
   `<div class="card">
-     <i class="card-icon ${iconMap[v] || 'fas fa-circle'}"></i>
+     <i class="card-icon ${iconMap[v] || 'fas fa-dot-circle'}"></i>
      <span>${v}</span>
    </div>`
 ).join("");
